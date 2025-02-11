@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -212,4 +214,13 @@ public class PlayerControl : MonoBehaviour
         }        
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.attachedRigidbody == null) return;
+        
+        var hitRb = hit.collider.attachedRigidbody;
+        var pushForce = Random.Range(1f, 4f);
+        
+        hitRb.AddForce(hit.moveDirection * pushForce, ForceMode.Impulse);
+    }
 }

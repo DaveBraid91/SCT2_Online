@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerSword : MonoBehaviour
 {
@@ -8,12 +9,7 @@ public class PlayerSword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamagable damagable = other.GetComponent<IDamagable>();
-
-        if(damagable != null)
-        {
-            damagable.ApplyDamage(damage);
-        }
+        other.gameObject.GetComponent<IDamageable>()?.ApplyDamage(damage);
     }
 }
 

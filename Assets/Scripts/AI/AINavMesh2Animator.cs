@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AINavMesh2Animator : AIBase
-{    
+{
+    private static readonly int Speed = Animator.StringToHash("speed");
     Animator cmpAnimator;
     float lerpedVelocity;
 
@@ -18,6 +19,6 @@ public class AINavMesh2Animator : AIBase
     void Update()
     {
         lerpedVelocity = Mathf.Lerp(lerpedVelocity, cmpAgent.velocity.magnitude, Time.deltaTime * 2.5f);
-        cmpAnimator.SetFloat("speed", lerpedVelocity);
+        cmpAnimator.SetFloat(Speed, lerpedVelocity);
     }
 }

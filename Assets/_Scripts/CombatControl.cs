@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CombatControl : MonoBehaviour
 {
+    private static readonly int Attack = Animator.StringToHash("attack");
+    private static readonly int StrongAttack = Animator.StringToHash("strongAttack");
+    private static readonly int Moving = Animator.StringToHash("moving");
     [SerializeField] Collider weaponTrigger;
 
     Animator _cmpAnimator;
@@ -23,32 +26,32 @@ public class CombatControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _cmpAnimator.SetBool("moving", _cmpCc.velocity.sqrMagnitude > 1f);
+        _cmpAnimator.SetBool(Moving, _cmpCc.velocity.sqrMagnitude > 1f);
 
         if(Input.GetMouseButtonDown(0))
         {
-            _cmpAnimator.SetTrigger("attack");
+            _cmpAnimator.SetTrigger(Attack);
         }
         else
         {
-            _cmpAnimator.ResetTrigger("attack");
+            _cmpAnimator.ResetTrigger(Attack);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            _cmpAnimator.SetTrigger("strongAttack");
+            _cmpAnimator.SetTrigger(StrongAttack);
         }
         else
         {
-            _cmpAnimator.ResetTrigger("strongAttack");
+            _cmpAnimator.ResetTrigger(StrongAttack);
         }
     }
 
-    void AttackAnimEvent()
+    private void AttackAnimEvent()
     {
         weaponTrigger.enabled = true;
     }
 
-    void EndAttackAnimEvent()
+    private void EndAttackAnimEvent()
     {
         weaponTrigger.enabled = false;
     }

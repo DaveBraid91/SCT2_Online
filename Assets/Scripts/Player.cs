@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class Player : MonoBehaviour, IDamagable, ITargeteable
+public class Player : MonoBehaviour, IDamageable, ITargeteable
 {
     public float speed = 1.2f;
 

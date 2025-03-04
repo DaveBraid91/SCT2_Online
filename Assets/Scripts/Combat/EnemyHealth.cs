@@ -1,23 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyHealth : BaseHealth
 {
-    NavMeshAgent cmpAgent;
+    private static readonly int Die1 = Animator.StringToHash("die");
+    private NavMeshAgent _cmpAgent;
 
     protected override void Awake()
     {
         base.Awake();
-        cmpAgent = GetComponent<NavMeshAgent>();
+        _cmpAgent = GetComponent<NavMeshAgent>();
     }
 
 
     protected override void Die()
     {
-        cmpAgent.enabled = false;
-        cmpAnimator.SetTrigger("die");
+        _cmpAgent.enabled = false;
+        cmpAnimator.SetTrigger(Die1);
         Destroy(this.gameObject, 10);
     }
 }

@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseHealth : MonoBehaviour, IDamagable
+public abstract class BaseHealth : MonoBehaviour, IDamageable
 {
     protected Animator cmpAnimator;
 
-    float currentLife;
+    private float currentLife;
     [SerializeField] private LifebarUI lifebarUI;
-    [SerializeField] float maxLife = 100;
+    [SerializeField] private float maxLife = 100;
     [SerializeField] private float damageCooldown;
 
     public float CurrentLife { get => currentLife; }
     public float MaxLife { get => maxLife; }
 
-    private bool canTakeDamage;
+    private bool _canTakeDamage;
 
     protected virtual void Awake()
     {
@@ -24,12 +24,12 @@ public abstract class BaseHealth : MonoBehaviour, IDamagable
     protected virtual void Start()
     {
         currentLife = maxLife;
-        canTakeDamage = true;
+        _canTakeDamage = true;
     }
 
     public void ApplyDamage(float damage)
     {
-        if (currentLife <= 0 || !canTakeDamage) return;
+        if (currentLife <= 0 || !_canTakeDamage) return;
 
         currentLife -= damage;
         lifebarUI.UpdateLifeBar(this);
@@ -57,9 +57,9 @@ public abstract class BaseHealth : MonoBehaviour, IDamagable
     
     private IEnumerator DamageCooldown()
     {
-        canTakeDamage = false;
+        _canTakeDamage = false;
         yield return new WaitForSeconds(damageCooldown);
-        canTakeDamage = true;
+        _canTakeDamage = true;
     }
 
     protected abstract void Die();

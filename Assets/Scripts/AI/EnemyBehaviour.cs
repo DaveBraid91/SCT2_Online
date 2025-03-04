@@ -90,7 +90,8 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else
         {
-            ChangeState(EnemyState.FollowingPath);
+            cmpAgent.ResetPath();
+            ChangeState(EnemyState.Wandering);
         }
         
     }
@@ -146,6 +147,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void HitPlayer(float damage)
     {
-        target.GetComponent<IDamagable>()?.ApplyDamage(damage);
+        target.GetComponent<IDamageable>()?.ApplyDamage(damage);
     }
 } 

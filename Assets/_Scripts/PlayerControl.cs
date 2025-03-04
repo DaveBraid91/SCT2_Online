@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour, ITargeteable
 {
     [Header("Gravity")]
     [SerializeField] private float gravity = -9.8f;
@@ -42,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     public bool useRootMotion = true;
 
     private static readonly int Jump = Animator.StringToHash("jump");
+    private static readonly int EndJump = Animator.StringToHash("endJump");
     private static readonly int ZSpeed = Animator.StringToHash("zSpeed");
     private static readonly int XSpeed = Animator.StringToHash("xSpeed");
     private static readonly int Crouched = Animator.StringToHash("crouched");
@@ -134,7 +131,7 @@ public class PlayerControl : MonoBehaviour
             if(Physics.Raycast(transform.position, Vector3.down, endJumpRaycastDistance))
             {
                 _jumpEnded = true;
-                _cmpAnimator.SetTrigger("endJump");                
+                _cmpAnimator.SetTrigger(EndJump);                
             }            
         }
 

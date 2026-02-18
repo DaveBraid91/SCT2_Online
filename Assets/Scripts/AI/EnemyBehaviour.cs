@@ -48,21 +48,22 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (state == EnemyState.FollowingPath)
+        switch (state)
         {
-            UpdateFollowPath();
-        }
-        else if(state == EnemyState.Wandering)
-        {
-            UpdateWandering();
-        }
-        else if (state == EnemyState.FollowingTarget)
-        {
-            UpdateFollowTarget();
-        }
-        else if (state == EnemyState.Attacking)
-        {
-            UpdateAttacking();
+            case EnemyState.FollowingPath:
+                UpdateFollowPath();
+                break;
+            case EnemyState.Wandering:
+                UpdateWandering();
+                break;
+            case EnemyState.FollowingTarget:
+                UpdateFollowTarget();
+                break;
+            case EnemyState.Attacking:
+                UpdateAttacking();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

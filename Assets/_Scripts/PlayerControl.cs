@@ -162,9 +162,11 @@ public class PlayerControl : MonoBehaviour, ITargeteable
                 
                 Vector3 slideDirection = Vector3.ProjectOnPlane(Vector3.down, hitInfo.normal).normalized;
                 maxSlideVelocity = slideDirection * slideSpeed;
-
+                
+                #if UNITY_EDITOR
                 Debug.DrawRay(hitInfo.point, hitInfo.normal, Color.blue, 3);
                 Debug.DrawRay(hitInfo.point, slideDirection, Color.red, 3);
+                #endif
             }
             else
             {

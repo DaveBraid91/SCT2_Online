@@ -6,13 +6,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class AIBase : MonoBehaviour
 {
-    protected EnemyBehaviour m_enemyBehaviour;
+    protected EnemySimpleBehaviour m_enemyBehaviour;
     protected NavMeshAgent cmpAgent;
     [SerializeField] protected float breakingDistance = 0.1f;
     
     protected virtual void Start()
     {
-        m_enemyBehaviour = GetComponent<EnemyBehaviour>();
+        m_enemyBehaviour = GetComponent<EnemySimpleBehaviour>();
         cmpAgent = GetComponent<NavMeshAgent>();
         cmpAgent.stoppingDistance = breakingDistance;
     }

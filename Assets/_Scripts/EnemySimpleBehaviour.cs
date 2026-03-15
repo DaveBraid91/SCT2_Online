@@ -70,9 +70,8 @@ public class EnemySimpleBehaviour : MonoBehaviour
     {
         if (PlayerIsOnRange(detectionDistance)) return;
         
-        ChangeState(EnemyStates.FollowingPath);
-        
-        
+        var dice = Random.Range(0, 100);
+        ChangeState(dice >= 50 ? EnemyStates.FollowingPath : EnemyStates.Wandering);
     }
 
     private void ChangeState(EnemyStates newState)

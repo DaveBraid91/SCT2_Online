@@ -39,7 +39,9 @@ public class AIWander : AIBase
     {
         if (cmpAgent != null)
         {
+            Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(randomEndPoint, 0.5f);
+            Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(cmpAgent.destination, 0.5f);
         }
     }
